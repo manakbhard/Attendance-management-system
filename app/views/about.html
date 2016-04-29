@@ -1,0 +1,188 @@
+<p>This is the about view.</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Login</title>
+
+
+	
+	
+	<script language="JavaScript" type="text/javascript">
+  
+  	function validateID(){
+  		var isSAPid_re = /^\s*\d+\s*$/; 
+  		var empID=document.login.empid.value;
+  		var pwd=document.login.password.value;
+   		if(empID.length > 0 && pwd.length > 0){
+	   		if(String(empID).search (isSAPid_re) == -1){
+	  		   	alert(" Invalid SAP id");
+	  		   	return;
+	  		}else{
+	  			document.login.hiddenData.value=pwd;
+	  			document.login.submit();
+	  		}
+   		}else{
+   			alert("SAP id or Password should not be empty");
+   			return;
+   		}
+  	}
+ 	window.history.forward();  
+    function noBack(){
+    	window.history.forward();
+    }  
+  </script>
+  	<script type="text/javascript" src="scripts/jquery-1.2.6.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-easing-1.3.pack.js"></script>
+	<script type="text/javascript" src="scripts/jquery-easing-compatibility.1.2.pack.js"></script>
+	<script type="text/javascript" src="scripts/coda-slider.1.1.1.pack.js"></script>
+	
+	<script type="text/javascript">
+	
+		var theInt = null;
+		var $crosslink, $navthumb;
+		var curclicked = 0;
+		
+		theInterval = function(cur){
+			clearInterval(theInt);
+			
+			if( typeof cur != 'undefined' )
+				curclicked = cur;
+			
+			$crosslink.removeClass("active-thumb");
+			$navthumb.eq(curclicked).parent().addClass("active-thumb");
+				$(".stripNav ul li a").eq(curclicked).trigger('click');
+			
+			theInt = setInterval(function(){
+				$crosslink.removeClass("active-thumb");
+				$navthumb.eq(curclicked).parent().addClass("active-thumb");
+				$(".stripNav ul li a").eq(curclicked).trigger('click');
+				curclicked++;
+				if( 6 == curclicked )
+					curclicked = 0;
+				
+			}, 3000);
+		};
+		
+		$(function(){
+			
+			$("#main-photo-slider").codaSlider();
+			
+			$navthumb = $(".nav-thumb");
+			$crosslink = $(".cross-link");
+			
+			$navthumb
+			.click(function() {
+				var $this = $(this);
+				theInterval($this.parent().attr('href').slice(1) - 1);
+				return false;
+			});
+			
+			theInterval();
+		});
+	</script>
+</head>
+
+<body>
+
+	
+	<form name="login" action="LoginValidator.jsp" method="post">
+	<input type="hidden" name="hiddenData" value="">
+	
+		<fieldset>
+			
+		<div colspan="2" align="center" style="font-family: Georgia, serif; font-size: 12px;">
+		<b><font color="red"> &nbsp;</font></b>
+		</div>
+		
+			<legend>Log in</legend>
+			
+			<label for="login">Employee ID</label>
+			<input type="text" id="empid"  name="empid" value=""/>
+			<div class="clear"></div>
+			
+			<label for="password">Password</label>
+			<input type="password" id="password" value="" name="password"/>
+			<div class="clear"></div>
+			
+			<label for="remember_me" style="padding: 0;">Remember me?</label>
+			<input type="checkbox" id="remember_me" style="position: relative; top: 3px; margin: 0; " name="remember_me"/>
+			<div class="clear"></div>
+			<br />
+			
+			<input type="submit" style="margin: -20px 0 0 287px;" class="button" name="commit" onclick="validateID();" value="Log in"/>	
+		
+		</fieldset>
+	</form>
+		
+	<div id=bottom_logo_bar>
+
+<DIV class=top_logo_container>
+
+<div class="slider-wrap">
+		<div id="main-photo-slider" class="csw">
+			<div class="panelContainer">
+
+				
+				<div class="panel" title="Panel 1">
+					<div class="wrapper">
+						
+												
+					</div>
+				</div>	
+
+				
+				<div class="panel" title="Panel 2">
+					<div class="wrapper">
+						<h1>Necessity Leads To Innovation</h1>
+												
+					</div>
+				</div>
+				<div class="panel" title="Panel 3">
+					<div class="wrapper">
+						<h1>Innovation Leads to Creativity</h1>
+												
+					</div>
+				</div>
+				<div class="panel" title="Panel 4">
+					<div class="wrapper">
+						<h1>Creativity Leads to Efficiency</h1>
+												
+					</div>
+				</div>
+				
+				<div class="panel" title="Panel 5">
+					<div class="wrapper">
+						
+												
+					</div>
+				</div>	
+
+
+			</div>
+		</div>
+
+	
+
+		<div id="movers-row">
+			
+		</div>
+
+	</div>
+
+</div>
+<!-- <div class=text_container>
+<font color="white">Copyright © 2011 <a class="fn org url" 
+href="about.html" rel=home>TBL eProductivity</a>, All rights 
+reserved.<a href="about.html">About</a><span>|</span> 
+<a href="http://www.myhcl.com">MyHCL</a><span>|</span> <a 
+href="http://www.hcl.com">HCL.COM</A><span>|</span> <a 
+href="credits.html">Credits</a><span>|</span> <a 
+class="mailto_link email" href="mailto:stanley.thampy@hcl.com?cc=naveenj@hcl.com">Contact 
+Us</a><span>|</span></font> 
+</div> -->
+</div>
+</body>
+
+</html>

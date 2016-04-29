@@ -1,0 +1,40 @@
+﻿<head>
+<script type="text/javascript">
+function showMe (box) {
+
+    //ar chboxs = document.getElementsByName("c1");
+    //console.log("HI");
+    var vis = "block";
+    document.getElementById(box).style.display = vis;
+
+}
+</script>
+</head>
+<h1>Hi {{vm.user.firstName}}!</h1>
+<p>You're logged in!!</p>
+<h3>All registered users:</h3>
+<ul>
+    <li ng-repeat="user in vm.allUsers | filter :{admin:false}">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a href="#/home" ng-click="vm.deleteUser(user.id)">Delete</a>
+      <!--   - <a href="#/users/{{user.username}}" ng-click="vm.viewUser(user.id)">{{user.username}}</a> -->
+    </li>
+</ul>
+	<div class="form-group" ng-class="{ 'has-error': form.dates.$dirty && form.dates.$error.required }">
+            <label for="username">Select a Date</label>
+            <input type="date" name="datesel" id="datesel" class="form-control" ng-model="datesel"  placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required/>
+            <span ng-show="form.dates.$dirty && form.dates.$error.required" class="help-block">Date is required</span>
+        </div>
+        <p>Type a letter in the input field to search for attendance record:</p>
+		<p><input type="text" ng-model="search" onkeypress ="showMe('div1')"></p>
+		<div id="div1" style="display:none">
+  <ul>
+    <li ng-repeat="user in vm.allUsers | filter :{admin:false, dates:datesel,username:search}">
+        {{user.username}} ({{user.dates |date }} - Check In :{{user.startt | date:'HH:mm:ss' }} Check Out- {{user.endt  | date:'HH:mm:ss'}})
+
+    </li>
+</ul>  
+</div>
+<p>&nbsp;</p>
+<p><a href="#/login" class="btn btn-primary">Logout</a></p>
+<p><a href="#/register" class="btn btn-link">Add User</a></p>
