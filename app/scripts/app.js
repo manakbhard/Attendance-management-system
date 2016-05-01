@@ -8,7 +8,7 @@
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngMaterial'
   ])
         .config(config)
         .run(run);

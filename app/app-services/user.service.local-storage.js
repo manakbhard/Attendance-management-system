@@ -9,7 +9,27 @@
     function UserService($timeout, $filter, $q) {
  
         var service = {};
- 
+        var usersInStore = getUsers();
+        console.log("In localStorage");
+            console.log(usersInStore);
+            console.log(localStorage.users);
+            //var lastUserInStore = usersInStore[usersInStore.length - 1] || { id: 0 };
+
+            var inituser={"admin":true,"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1};
+            if(usersInStore.length==0)
+            {
+                usersInStore.push(inituser);
+            setUsers(usersInStore);
+            console.log(localStorage.users);
+
+            }
+            else
+            {
+                console.log(" localStorage is not null");
+            }
+            //localStorage.users =localStorage.users||[{"admin":true,"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1}];
+            //console.log(localStorage.users);
+            //localStorage.users[0]={"admin":true,"firstName":"admin","lastName":"admin","username":"admin","password":"password","id":1};
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
@@ -80,7 +100,7 @@
                 }
             }
             setUsers(users);
-            deferred.resolve();
+            deferred.resolve({success: true});
  
             return deferred.promise;
         }

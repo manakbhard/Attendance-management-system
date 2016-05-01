@@ -111,6 +111,11 @@
                     if (response.success) {
                         console.log('Success');
                         FlashService.Success('Update successful', true);
+                        //$location.path('/login');
+                        document.getElementById('div3').style.display="none"
+                        document.getElementById('div2').style.display="block"
+                        //document.getElementById('save').disabled=true;
+                        document.getElementById('save').style.display="none"
                         $location.path('/users/'+vm.user.username);
                     } else {
                         console.log('failed');
@@ -120,7 +125,7 @@
                 });
                 //console.log("234232421343414");
                 //console.log(vm.user.username);
-                $location.path('/users/'+vm.user.username);
+                //$location.path('/users/'+vm.user.username);
                 //console.log("dgfdg");
         }
 

@@ -1,19 +1,5 @@
-<head>
 
-<script type="text/javascript">
-<!--
-function showMe (box) {
-
-    //ar chboxs = document.getElementsByName("c1");
-    //console.log("HI");
-    //var vis = "block";
-    //document.getElementById(box).style.display = vis;
-
-}
-
-//-->
-</script>
-</head>
+<md-icon md-svg-src="svg/1462066392_male3.svg"></md-icon>
 <h1>Hi {{vm.user.firstName}}!</h1>
 <p>You're logged in!!</p>
 
@@ -38,28 +24,31 @@ function showMe (box) {
  <div id="div3">
         <div class="form-group" ng-class="{ 'has-error': form.dates.$dirty && form.dates.$error.required }">
             <label for="username">Select a Date</label>
-            <input type="date" name="dates" id="dates" class="form-control" ng-model="vm.user.dates"  placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
+            <!-- <input type="date" name="dates" id="dates" class="form-control" ng-model="vm.user.dates"  placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required /> -->
+            <md-datepicker id ="dates" ng-model="dt" md-placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" ng-change="vm.user.dates=dt.toISOString()" required></md-datepicker>
             <span ng-show="form.dates.$dirty && form.dates.$error.required" class="help-block">Date is required</span>
         </div>
         <div id="div1" style="display:none" class="form-group" ng-class="{ 'has-error': form.startt.$dirty && form.startt.$error.required }">
             <label for="username">Start Time</label>
-            <input type="time" name="startt" id="startt" class="form-control"  ng-model="vm.user.startt" value="{{vm.user.startt}}" required />
+            <input type="time" name="startt" id="startt" class="form-control"  ng-model="stt"   ng-change="vm.user.startt=stt.toISOString()"required />
             <span ng-show="form.startt.$dirty && form.startt.$error.required" class="help-block">Start Time is required</span>
             <label for="username">End Time</label>
-            <input type="time" name="endt" id="endt" class="form-control"  ng-model="vm.user.endt" required />
+            <input type="time" name="endt" id="endt" class="form-control"  ng-model="endt" ng-change="vm.user.endt=endt.toISOString()" required />
             <span ng-show="form.endt.$dirty && form.endt.$error.required" class="help-block">End Time is required</span>
         </div>
         </div>
          <div id="div2" style="display:none">
-         You have already checked in for today !!!
+         You have checked in for today !!!
         Date = {{vm.user.dates| date}}
-        Check In : ={{vm.user.startt | date:'HH:mm:ss'}}
-        Check Out:={{vm.user.endt | date:'HH:mm:ss'}}
+        Check In : ={{vm.user.startt | date:'HH:mm'}}
+        Check Out:={{vm.user.endt | date:'HH:mm'}}
        </div>
         <div class="form-actions">
-            <button type="submit"  id="save" class="btn btn-primary" ng-disabled="form.$invalid || vm.dataLoading" ng-click="submitted=true;">Save</button>
+            <button type="submit"  id="save" class="btn btn-primary" ng-disabled="form.$invalid || vm.dataLoading" ng-click="submitted=true;">Checkout</button>
             <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <md-button>
             <a href="#/login" class="btn btn-link">Logout</a>
+            </md-button>
         </div>
     </form>
 

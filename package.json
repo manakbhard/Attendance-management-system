@@ -39,5 +39,9 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-material": "^1.0.8"
   }
 }
